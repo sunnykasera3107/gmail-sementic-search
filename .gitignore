@@ -1,0 +1,12 @@
+# py cache
+__pycache__/
+
+# Envorment
+.venv
+.env
+
+# vector storage
+chroma_db/
+
+# Secrets
+secrets/

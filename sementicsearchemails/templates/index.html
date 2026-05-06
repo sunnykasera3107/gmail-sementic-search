@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h2>Dashboard</h2>
+<form method="POST">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-4">
+            <button name="ingest" class="btn btn-outline-primary text-center justify-content-center">Ingest Emails from Gmail</button>
+        </div>
+        <div class="col-4">
+        </div>
+        <div class="col-4">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Query" aria-describedby="button-addon2" name="query" />
+                <button name="find" class="btn btn-primary" id="button-addon2">Search</button>
+                <a href="/" class="btn btn-outline-primary" id="button-addon1">Show All</a>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="row">
+    {% if items %}
+        <table class="table table-dark table-striped">
+            <tr>
+                <th>Content</th>
+                <th>Link to gmail</th>
+            </tr>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.content }}</td>
+                    <td><a href="{{ item.link }}" target="_blank">See this email</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>
+            No item found
+        </p>
+    {% endif %}
+</div>
+{% endblock %}
